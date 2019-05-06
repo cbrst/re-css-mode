@@ -1,7 +1,33 @@
 ;;; re-css-mode.el --- Pimp my CSS
 
+;; Copyright 2019 by Christian Brassat
+
+;; Author: Christian Brassat (http://brassat.eu/)
+;; Version: 0.1.0
+;; Created: 2019/05/06
+;; Package-Requires: ((emacs "24.3"))
+;; Keywords: languages, convenience, css, color
+;; License: GPL v3
+;; Homepage: https://git2.trbk.it/cbra/re-css-mode
+
+;; This file is not part of GNU Emacs.
+
 ;;; Commentary:
+
 ;;  Extending font-lock for CSS mode.
+
+;; INSTALL
+
+;; Manual install:
+;; Place file at ~/.emacs.d/lisp/
+;; Put the following in ~/.emacs.d/init.el:
+;; (add-to-list 'load-path "~/.emacs.d/lisp/")
+;; (autoload 're-css-mode "re-css-mode" "CSS major mode." t)
+
+;; Package manager:
+;; To install with straight.el, put the following in ~/.emacs.d/init.el:
+;; (straight-use-package
+;;  `(re-css-mode :type git :host nil :repo "https://git2.trbk.it/cbra/re-css-mode.git")
 
 ;;; Code:
 
