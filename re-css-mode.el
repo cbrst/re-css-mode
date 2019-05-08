@@ -56,6 +56,16 @@
   "Face for CSS properties."
   :group 're-css-mode)
 
+(defface re-css-value
+  '((t :foreground "blue"))
+  "Face for CSS values."
+  :group 're-css-mode)
+
+(defface re-css-var-name
+  '((t :foreground "teal"))
+  "Face for CSS variables."
+  :group 're-css-mode)
+
 ;; https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 (defvar +re-css-html-tag-names
   '("html"
@@ -720,12 +730,14 @@
 			(cssUnitNames           (regexp-opt +re-css-units))
 			(cssHtmlTags            (regexp-opt +re-css-html-tag-names 'symbols)))
 
-		`(("#[-_a-zA-Z]+[-_a-zA-Z0-9]*" . 're-css-id-selector)
-		  ("\\.[a-zA-Z]+[-_a-zA-Z0-9]*" . 're-css-class-selector)
-		  (,cssHtmlTags                 . 're-css-html-tag)
-		  (,cssPseudoSelectorNames      . 're-css-pseudo-selector)
-		  (,cssPropertyNames            . 're-css-property)
-		  (,cssValueNames               . 're-css-value)
+		`(("#[-_a-zA-Z]+[-_a-zA-Z0-9]*"                  . 're-css-id-selector)
+		  ("\\.[a-zA-Z]+[-_a-zA-Z0-9]*"                  . 're-css-class-selector)
+		  ("\\(var\\)(\\(.*\\))"                         (1 're-css-value) (2 're-css-var-name))
+		  ("\\(^\\|[[:space:](]\\)\\(--[-a-zA-Z0-9]+\\)" (2 're-css-var-name))
+		  (,cssHtmlTags                                  . 're-css-html-tag)
+		  (,cssPseudoSelectorNames                       . 're-css-pseudo-selector)
+		  (,cssPropertyNames                             . 're-css-property)
+		  (,cssValueNames                                . 're-css-value)
 
 		  ;; Match units
 		  (,(concat "\\([0-9]+\\)" "\\(" cssUnitNames "\\)") (1 font-lock-constant-face) (2 font-lock-type-face))
